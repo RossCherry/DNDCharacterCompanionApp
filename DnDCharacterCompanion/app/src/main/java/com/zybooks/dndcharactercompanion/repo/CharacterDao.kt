@@ -7,7 +7,7 @@ import com.zybooks.dndcharactercompanion.model.Character
 @Dao
 interface CharacterDao{
     @Query ("SELECT * FROM Character WHERE id =:id")
-    fun getCharacter(id:Long): Character?
+    fun getCharacter(id:Long): LiveData<Character?>
 
     @Query("SELECT * FROM Character")
     fun getCharacters(): LiveData<List<Character>>
