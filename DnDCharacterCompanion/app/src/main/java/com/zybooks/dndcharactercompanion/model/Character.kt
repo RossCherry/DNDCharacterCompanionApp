@@ -1,4 +1,4 @@
-package com.zybooks.dndcharactercompanion
+package com.zybooks.dndcharactercompanion.model
 
 import androidx.annotation.NonNull
 import androidx.room.Entity
