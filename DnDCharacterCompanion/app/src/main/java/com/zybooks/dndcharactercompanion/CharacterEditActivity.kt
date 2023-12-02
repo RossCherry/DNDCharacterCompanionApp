@@ -75,9 +75,94 @@ class CharacterEditActivity : AppCompatActivity() {
     }
 
     private fun updateUI(){
-        
+        nameEditText.setText(character.name)
+        classEditText.setText(character.characterClass)
+        raceEditText.setText(character.race)
+        hpEditText.setText(character.hp)
+        acEditText.setText(character.ac)
+        levelEditText.setText(character.level)
+        strEditText.setText(character.strength)
+        dexEditText.setText(character.dexterity)
+        conEditText.setText(character.constitution)
+        wisEditText.setText(character.wisdom)
+        chaEditText.setText(character.charisma)
+        updateCheckBox()
     }
 
+    fun updateCheckBox(){
+        for(prof in profCheckBox)
+        {
+            if(prof == "acrobatics")
+            {
+                findViewById<CheckBox>(R.id.characterAcrobatics).isChecked = true
+            }
+            else if(prof == "athletics")
+            {
+                findViewById<CheckBox>(R.id.characterAthletics).isChecked = true
+            }
+            else if(prof == "animal handling")
+            {
+                findViewById<CheckBox>(R.id.characterAnHand).isChecked = true
+            }
+            else if(prof == "arcana")
+            {
+                findViewById<CheckBox>(R.id.characterArcana).isChecked = true
+            }
+            else if(prof == "deception")
+            {
+                findViewById<CheckBox>(R.id.characterDeception).isChecked = true
+            }
+            else if(prof == "history")
+            {
+                findViewById<CheckBox>(R.id.characterHistory).isChecked = true
+            }
+            else if(prof == "insight")
+            {
+                findViewById<CheckBox>(R.id.characterInsight).isChecked = true
+            }
+            else if(prof == "intimidation")
+            {
+                findViewById<CheckBox>(R.id.characterIntimidation).isChecked = true
+            }
+            else if(prof == "investigation")
+            {
+                findViewById<CheckBox>(R.id.characterInvestigation).isChecked = true
+            }
+            else if(prof == "medicine")
+            {
+                findViewById<CheckBox>(R.id.characterMedicine).isChecked = true
+            }
+            else if(prof == "nature")
+            {
+                findViewById<CheckBox>(R.id.characterNature).isChecked = true
+            }
+            else if(prof == "perception")
+            {
+                findViewById<CheckBox>(R.id.characterPerception).isChecked = true
+            }
+            else if(prof == "persuasion")
+            {
+                findViewById<CheckBox>(R.id.characterPersuasion).isChecked = true
+            }
+            else if(prof == "religion")
+            {
+                findViewById<CheckBox>(R.id.characterReligion).isChecked = true
+            }
+            else if(prof == "slight of hand")
+            {
+                findViewById<CheckBox>(R.id.characterSoH).isChecked = true
+            }
+            else if(prof == "stealth")
+            {
+                findViewById<CheckBox>(R.id.characterStealth).isChecked = true
+            }
+            else if(prof == "survival")
+            {
+                findViewById<CheckBox>(R.id.characterSurvival).isChecked = true
+            }
+
+        }
+    }
     fun profList(): List<String>
     {
         var skillList = mutableListOf<String>()
