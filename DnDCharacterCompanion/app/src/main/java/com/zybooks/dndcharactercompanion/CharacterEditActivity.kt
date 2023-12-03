@@ -20,7 +20,7 @@ class CharacterEditActivity : AppCompatActivity() {
     private lateinit var intEditText: EditText
     private lateinit var wisEditText: EditText
     private lateinit var chaEditText: EditText
-    private lateinit var profCheckBox: List<String>
+    //private lateinit var profCheckBox: List<String>
 
     private var characterId = 0L
     private lateinit var character: Character
@@ -49,7 +49,7 @@ class CharacterEditActivity : AppCompatActivity() {
         wisEditText = findViewById(R.id.characterWIS)
         chaEditText = findViewById(R.id.characterCHA)
 
-        profCheckBox = profList()
+        //profCheckBox = profList()
 
         characterId = intent.getLongExtra(EXTRA_CHARACTER_ID, -1L)
 
@@ -85,10 +85,10 @@ class CharacterEditActivity : AppCompatActivity() {
         intEditText.setText(character.intelligence)
         wisEditText.setText(character.wisdom)
         chaEditText.setText(character.charisma)
-        updateCheckBox()
+        //updateCheckBox()
     }
 
-    fun updateCheckBox(){
+    /*fun updateCheckBox(){
         for(prof in profCheckBox)
         {
             if(prof == "acrobatics")
@@ -161,8 +161,8 @@ class CharacterEditActivity : AppCompatActivity() {
             }
 
         }
-    }
-    fun profList(): MutableList<String>
+    }*/
+    /*fun profList(): MutableList<String>
     {
         var skillList = mutableListOf<String>()
         if(findViewById<CheckBox>(R.id.characterAcrobatics).isChecked)
@@ -239,7 +239,7 @@ class CharacterEditActivity : AppCompatActivity() {
         }
 
         return skillList
-    }
+    }*/
 
     private fun saveButtonClick(){
         character.name = nameEditText.text.toString()
@@ -254,7 +254,7 @@ class CharacterEditActivity : AppCompatActivity() {
         character.intelligence = intEditText.text.toString()
         character.wisdom = wisEditText.text.toString()
         character.charisma = chaEditText.text.toString()
-        character.proficiencyList = profList()
+       //character.proficiencyList = profList()
 
         if(characterId == -1L){
             characterDetailViewModel.addCharacter(character)

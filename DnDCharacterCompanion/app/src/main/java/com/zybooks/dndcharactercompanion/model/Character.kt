@@ -3,6 +3,7 @@ package com.zybooks.dndcharactercompanion.model
 import androidx.annotation.NonNull
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import androidx.room.TypeConverter
 
 @Entity
 data class Character(
@@ -34,7 +35,7 @@ data class Character(
 
     var charisma: String = "",
 
-    var proficiencyList:MutableList<String> = mutableListOf<String>()
+    //var proficiencyList:MutableList<String> = mutableListOf<String>()
 
 
 

@@ -16,5 +16,5 @@ interface CharacterDao{
     fun addCharacter(character: Character): Long
 
     @Update
-    fun updateCharacter(character: Character): Long
+    fun updateCharacter(character: Character)
 }
