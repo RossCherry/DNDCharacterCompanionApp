@@ -7,23 +7,37 @@ import android.view.Menu
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.zybooks.dndcharactercompanion.model.Character
+import com.zybooks.dndcharactercompanion.viewmodel.CharacterListViewModel
 
 class CharacterSelectActivity : AppCompatActivity() {
     private lateinit var characterRecyclerView: RecyclerView
     private lateinit var characterColors: IntArray
-    private var characterAdapter = CharacterAdapter()
+    private var characterAdapter = CharacterAdapter(mutableListOf())
+
+    private val characterInfoViewModel: CharacterListViewModel by lazy {
+        ViewModelProvider(this).get(CharacterListViewModel::class.java)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_character_select)
+
+        characterInfoViewModel.characterListLiveData.observe(
+            this, {characterList ->
+                updateUI(characterList)
+            }
+        )
+
+
 
         characterColors = resources.getIntArray(R.array.characterColors)
 
         characterRecyclerView = findViewById(R.id.character_recycler_view)
         characterRecyclerView.layoutManager = GridLayoutManager(applicationContext, 2)
-
-        updateUI()
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -31,8 +45,8 @@ class CharacterSelectActivity : AppCompatActivity() {
         return true
     }
 
-    private fun updateUI() {
-        characterAdapter = CharacterAdapter()
+    private fun updateUI(characterList: List<Character>) {
+        characterAdapter = CharacterAdapter(characterList as MutableList<Character>)
         characterRecyclerView.adapter = characterAdapter
     }
 
@@ -40,7 +54,7 @@ class CharacterSelectActivity : AppCompatActivity() {
         RecyclerView.ViewHolder(inflater.inflate(R.layout.recycler_view_items, parent, false))/*,
         View.OnClickListener*/ {
 
-        //private var character: Subject? = null
+        private var character: Character? = null
         private val characterTextView: TextView
 
         init {
@@ -48,17 +62,17 @@ class CharacterSelectActivity : AppCompatActivity() {
             characterTextView = itemView.findViewById(R.id.character_text_view)
         }
 
-        fun bind(/*subject: Subject, position: Int*/) {
-            //this.subject = subject
-            characterTextView.text = "Sir Lancelot \n Level: 420 \n Class: Fighter"
-
+        fun bind(character: Character, position: Int) {
+            this.character = character
+            characterTextView.text = "${character.name}\nLevel: ${character.level}\nClass: ${character.characterClass}"
+            //characterTextView.text = "Sir Lancelot \n Level: 420 \n Class: Fighter"
             // Make the background color dependent on the length of the subject string
             val colorIndex = characterTextView.text.length % characterColors.size
             characterTextView.setBackgroundColor(characterColors[colorIndex])
         }
     }
 
-    private inner class CharacterAdapter() :
+    private inner class CharacterAdapter(private val characterList: MutableList<Character>) :
         RecyclerView.Adapter<CharacterHolder>() {
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CharacterHolder {
@@ -67,7 +81,7 @@ class CharacterSelectActivity : AppCompatActivity() {
         }
 
         override fun onBindViewHolder(holder: CharacterHolder, position: Int) {
-            holder.bind()
+            holder.bind(characterList[position], position)
         }
 
         override fun getItemCount(): Int {

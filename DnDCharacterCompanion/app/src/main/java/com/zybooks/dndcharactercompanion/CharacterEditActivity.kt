@@ -1,7 +1,5 @@
 package com.zybooks.dndcharactercompanion
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
 import android.widget.CheckBox
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
