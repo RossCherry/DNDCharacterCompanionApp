@@ -84,6 +84,7 @@ class CharacterEditActivity : AppCompatActivity() {
         strEditText.setText(character.strength)
         dexEditText.setText(character.dexterity)
         conEditText.setText(character.constitution)
+        intEditText.setText(character.intelligence)
         wisEditText.setText(character.wisdom)
         chaEditText.setText(character.charisma)
         updateCheckBox()
@@ -163,7 +164,7 @@ class CharacterEditActivity : AppCompatActivity() {
 
         }
     }
-    fun profList(): List<String>
+    fun profList(): MutableList<String>
     {
         var skillList = mutableListOf<String>()
         if(findViewById<CheckBox>(R.id.characterAcrobatics).isChecked)
@@ -240,6 +241,32 @@ class CharacterEditActivity : AppCompatActivity() {
         }
 
         return skillList
+    }
+
+    private fun saveButtonClick(){
+        character.name = nameEditText.text.toString()
+        character.characterClass = classEditText.text.toString()
+        character.race = raceEditText.text.toString()
+        character.hp = hpEditText.text.toString()
+        character.ac = acEditText.text.toString()
+        character.level = levelEditText.text.toString()
+        character.strength = strEditText.text.toString()
+        character.dexterity = dexEditText.text.toString()
+        character.constitution = conEditText.text.toString()
+        character.intelligence = intEditText.text.toString()
+        character.wisdom = wisEditText.text.toString()
+        character.charisma = chaEditText.text.toString()
+        character.proficiencyList = profList()
+
+        if(characterId == -1L){
+            characterDetailViewModel.addCharacter(character)
+        } else {
+            characterDetailViewModel.updateCharacter(character)
+        }
+
+        setResult(RESULT_OK)
+        finish()
+
     }
 
 }

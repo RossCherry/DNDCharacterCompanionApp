@@ -9,32 +9,32 @@ data class Character(
     @PrimaryKey(autoGenerate = true)
     var id: Long = 0,
 
-    @NonNull
-    var hp: Int,
-    @NonNull
-    var ac: Int,
-    @NonNull
-    var name: String,
-    @NonNull
-    var race: String,
-    @NonNull
-    var characterClass: String,
-    @NonNull
-    var level: Int,
-    @NonNull
-    var strength: Int,
-    @NonNull
-    var dexterity: Int,
-    @NonNull
-    var constitution: Int,
-    @NonNull
-    var intelligence: Int,
-    @NonNull
-    var wisdom: Int,
-    @NonNull
-    var charisma: Int,
-    @NonNull
-    var proficiencyList:MutableList<String>
+
+    var hp: String = "",
+
+    var ac: String = "",
+
+    var name: String = "",
+
+    var race: String = "",
+
+    var characterClass: String = "",
+
+    var level: String = "",
+
+    var strength: String = "",
+
+    var dexterity: String = "",
+
+    var constitution: String = "",
+
+    var intelligence: String = "",
+
+    var wisdom: String = "",
+
+    var charisma: String = "",
+
+    var proficiencyList:MutableList<String> = mutableListOf<String>()
 
 
 
