@@ -31,14 +31,14 @@ class DiceActivity : AppCompatActivity(), SensorEventListener {
     private val SHAKE_THRESHOLD = 10f
     private var mediaPlayer: MediaPlayer? = null
     private var charLevel: Int = 0
-    private var skillValue: Int = 0
+    private var skillValue: Int = 3
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dice_roll)
 
         //get intents
-        skillValue = intent.getIntExtra("EXTRA_CHARACTER_SKILL", 0)
+        skillValue = intent.getIntExtra("EXTRA_CHARACTER_SKILL", 3)
         charLevel = intent.getIntExtra("EXTRA_CHARACTER_LEVEL", 0)
         //create Textview and CheckBox
         diceTotal = findViewById(R.id.DiceTotalTXTView)
