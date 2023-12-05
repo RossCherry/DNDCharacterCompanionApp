@@ -36,6 +36,8 @@ class StatActivity : AppCompatActivity() {
     private lateinit var wisButton: Button
     private lateinit var chaButton: Button
 
+    val EXTRA_CHARACTER_SKILL = 0;
+    val EXTRA_CHARCTER_LEVEL = 0;
     private lateinit var deletedStats: Stats
     private var currentQuestionIndex = 0
     private val addStatResultLauncher = registerForActivityResult(
@@ -166,6 +168,12 @@ class StatActivity : AppCompatActivity() {
         setTitle(title)
     }*/
 
+    private fun rollDice(att: Int)
+    {
+        val intent = Intent(this, DiceActivity::class.java)
+            intent.putExtra("EXTRA_CHARACTER_SKILL", att)
+            intent.putExtra("EXTRA_CHARCTER_LEVEL", statsList.level)
+    }
     private fun addStat() {
         val intent = Intent(this, StatEditActivity::class.java)
         intent.putExtra(EXTRA_CHARACTER_ID, character.id)
