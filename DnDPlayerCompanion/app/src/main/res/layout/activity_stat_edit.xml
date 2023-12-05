@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textColor="@color/black"
+            android:text="@string/character_details"
+            android:id="@+id/CharacterDetails"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"/>
+        <TextView
+            android:id="@+id/characterNameLabel"
+            android:layout_width="50dp"
+            android:layout_height="40dp"
+            app:layout_constraintTop_toBottomOf="@id/CharacterDetails"
+            app:layout_constraintRight_toLeftOf="@+id/characterName"
+            android:text="@string/name"
+            />
+
+        <EditText
+            android:id="@+id/characterName"
+            android:layout_width="360dp"
+            android:layout_height="40dp"
+            app:layout_constraintTop_toBottomOf="@id/CharacterDetails"
+            app:layout_constraintLeft_toRightOf="@+id/characterNameLabel"
+            android:inputType="text"
+            />
+
+        <TextView
+            android:id="@+id/characterRaceLabel"
+            android:layout_width="50dp"
+            android:layout_height="40dp"
+            app:layout_constraintTop_toBottomOf="@+id/characterNameLabel"
+            app:layout_constraintRight_toLeftOf="@+id/characterRace"
+            android:text="@string/race"
+            />
+
+        <EditText
+            android:id="@+id/characterRace"
+            android:layout_width="360dp"
+            android:layout_height="40dp"
+            app:layout_constraintTop_toBottomOf="@+id/characterNameLabel"
+            app:layout_constraintLeft_toRightOf="@+id/characterRaceLabel"
+            android:inputType="text"
+            />
+
+        <TextView
+            android:id="@+id/characterClassLabel"
+            android:layout_width="50dp"
+            android:layout_height="40dp"
+            app:layout_constraintTop_toBottomOf="@+id/characterRaceLabel"
+            app:layout_constraintRight_toLeftOf="@+id/characterClass"
+            android:text="@string/Class"
+            />
+
+        <EditText
+            android:id="@+id/characterClass"
+            android:layout_width="360dp"
+            android:layout_height="40dp"
+            app:layout_constraintTop_toBottomOf="@+id/characterRaceLabel"
+            app:layout_constraintLeft_toRightOf="@+id/characterClassLabel"
+            android:inputType="text"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textColor="@color/black"
+            android:text="@string/character_resources"
+            android:id="@+id/CharacterResources"
+            app:layout_constraintTop_toBottomOf="@+id/characterClassLabel"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            />
+        <TextView
+            android:id="@+id/characterLevelLabel"
+            android:layout_width="50dp"
+            android:layout_height="40dp"
+            app:layout_constraintTop_toBottomOf="@+id/CharacterResources"
+            app:layout_constraintRight_toLeftOf="@+id/characterLevel"
+            android:text="@string/level"
+            />
+
+        <EditText
+            android:id="@+id/characterLevel"
+            android:layout_width="360dp"
+            android:layout_height="40dp"
+            app:layout_constraintTop_toBottomOf="@+id/CharacterResources"
+            app:layout_constraintLeft_toRightOf="@+id/characterLevelLabel"
+            android:inputType="number"
+            />
+
+        <TextView
+            android:id="@+id/characterHealthLabel"
+            android:layout_width="50dp"
+            android:layout_height="40dp"
+            app:layout_constraintTop_toBottomOf="@+id/characterLevelLabel"
+            app:layout_constraintRight_toLeftOf="@+id/characterHealth"
+            android:text="@string/hp"
+            />
+
+        <EditText
+            android:id="@+id/characterHealth"
+            android:layout_width="360dp"
+            android:layout_height="40dp"
+            app:layout_constraintTop_toBottomOf="@+id/characterLevelLabel"
+            app:layout_constraintLeft_toRightOf="@+id/characterHealthLabel"
+            android:inputType="number"
+            />
+
+        <TextView
+            android:id="@+id/characterACLabel"
+            android:layout_width="50dp"
+            android:layout_height="40dp"
+            app:layout_constraintTop_toBottomOf="@+id/characterHealthLabel"
+            app:layout_constraintRight_toLeftOf="@+id/characterAC"
+            android:text="@string/ac"
+            />
+
+        <EditText
+            android:id="@+id/characterAC"
+            android:layout_width="360dp"
+            android:layout_height="40dp"
+            app:layout_constraintTop_toBottomOf="@+id/characterHealthLabel"
+            app:layout_constraintLeft_toRightOf="@+id/characterACLabel"
+            android:inputType="number"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textColor="@color/black"
+            android:text="@string/character_stats"
+            android:id="@+id/CharacterStats"
+            app:layout_constraintTop_toBottomOf="@+id/characterAC"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            />
+        <TextView
+            android:id="@+id/characterSTRLabel"
+            android:layout_width="50dp"
+            android:layout_height="40dp"
+            app:layout_constraintTop_toBottomOf="@+id/CharacterStats"
+            app:layout_constraintRight_toLeftOf="@+id/characterSTR"
+            android:text="@string/str"
+            />
+
+        <EditText
+            android:id="@+id/characterSTR"
+            android:layout_width="360dp"
+            android:layout_height="40dp"
+            app:layout_constraintTop_toBottomOf="@+id/CharacterStats"
+            app:layout_constraintLeft_toRightOf="@+id/characterSTRLabel"
+            android:inputType="number"
+            />
+
+        <TextView
+            android:id="@+id/characterDEXLabel"
+            android:layout_width="50dp"
+            android:layout_height="40dp"
+            app:layout_constraintTop_toBottomOf="@+id/characterSTRLabel"
+            app:layout_constraintRight_toLeftOf="@+id/characterDEX"
+            android:text="@string/dex"
+            />
+
+        <EditText
+            android:id="@+id/characterDEX"
+            android:layout_width="360dp"
+            android:layout_height="40dp"
+            app:layout_constraintTop_toBottomOf="@+id/characterSTRLabel"
+            app:layout_constraintLeft_toRightOf="@+id/characterDEXLabel"
+            android:inputType="number"
+            />
+
+        <TextView
+            android:id="@+id/characterCONLabel"
+            android:layout_width="50dp"
+            android:layout_height="40dp"
+            app:layout_constraintTop_toBottomOf="@+id/characterDEXLabel"
+            app:layout_constraintRight_toLeftOf="@+id/characterCON"
+            android:text="@string/con"
+            />
+
+        <EditText
+            android:id="@+id/characterCON"
+            android:layout_width="360dp"
+            android:layout_height="40dp"
+            app:layout_constraintTop_toBottomOf="@+id/characterDEXLabel"
+            app:layout_constraintLeft_toRightOf="@+id/characterCONLabel"
+            android:inputType="number"
+            />
+
+        <TextView
+            android:id="@+id/characterINTLabel"
+            android:layout_width="50dp"
+            android:layout_height="40dp"
+            app:layout_constraintTop_toBottomOf="@+id/characterCONLabel"
+            app:layout_constraintRight_toLeftOf="@+id/characterINT"
+            android:text="@string/Int"
+            />
+
+        <EditText
+            android:id="@+id/characterINT"
+            android:layout_width="360dp"
+            android:layout_height="40dp"
+            app:layout_constraintTop_toBottomOf="@+id/characterCONLabel"
+            app:layout_constraintLeft_toRightOf="@+id/characterINTLabel"
+            android:inputType="number"
+            />
+
+        <TextView
+            android:id="@+id/characterWISLabel"
+            android:layout_width="50dp"
+            android:layout_height="40dp"
+            app:layout_constraintTop_toBottomOf="@+id/characterINTLabel"
+            app:layout_constraintRight_toLeftOf="@+id/characterWIS"
+            android:text="@string/wis"
+            />
+
+        <EditText
+            android:id="@+id/characterWIS"
+            android:layout_width="360dp"
+            android:layout_height="40dp"
+            app:layout_constraintTop_toBottomOf="@+id/characterINTLabel"
+            app:layout_constraintLeft_toRightOf="@+id/characterWISLabel"
+            android:inputType="number"
+            />
+
+        <TextView
+            android:id="@+id/characterCHALabel"
+            android:layout_width="50dp"
+            android:layout_height="40dp"
+            app:layout_constraintTop_toBottomOf="@+id/characterWISLabel"
+            app:layout_constraintRight_toLeftOf="@+id/characterCHA"
+            android:text="@string/cha"
+            />
+
+        <EditText
+            android:id="@+id/characterCHA"
+            android:layout_width="360dp"
+            android:layout_height="40dp"
+            app:layout_constraintTop_toBottomOf="@+id/characterWISLabel"
+            app:layout_constraintLeft_toRightOf="@+id/characterCHALabel"
+            android:inputType="number"
+            />
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/save_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/check"
+            android:contentDescription="@string/save_question"
+            android:layout_margin="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
