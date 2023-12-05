@@ -34,4 +34,7 @@
     <string name="Class">Class:</string>
     <string name="race">Race:</string>
     <string name="name">Name:</string>
+    <string name="is_skill_proficient">Is Skill Proficient?</string>
+    <string name="please_roll_dice">Please Roll Dice</string>
+    <string name="roll">Roll</string>
 </resources>
