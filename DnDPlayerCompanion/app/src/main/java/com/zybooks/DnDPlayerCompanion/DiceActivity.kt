@@ -21,23 +21,28 @@ class DiceActivity : AppCompatActivity(), SensorEventListener {
     private lateinit var accelerometer: Sensor
     private lateinit var dice: DiceRoll
     private lateinit var diceImageView: ImageView
-    private lateinit var DiceTotal: TextView
-    private lateinit var IsProfBox: CheckBox
+    private lateinit var diceTotal: TextView
+    private lateinit var isProfBox: CheckBox
     private var timer: CountDownTimer? = null
     private var last_x: Float = 0f
     private var last_y:Float = 0f
     private var last_z:Float = 0f
     private var lastUpdate: Long = 0L
-    val SHAKE_THRESHOLD = 10f
+    private val SHAKE_THRESHOLD = 10f
     private var mediaPlayer: MediaPlayer? = null
+    private var charLevel: Int = 0
+    private var skillValue: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dice_roll)
 
+        //get intents
+        skillValue = intent.getIntExtra("EXTRA_CHARACTER_SKILL", 0)
+        charLevel = intent.getIntExtra("EXTRA_CHARACTER_LEVEL", 0)
         //create Textview and CheckBox
-        DiceTotal = findViewById(R.id.DiceTotalTXTView)
-        IsProfBox = findViewById(R.id.ProfCheckBox)
+        diceTotal = findViewById(R.id.DiceTotalTXTView)
+        isProfBox = findViewById(R.id.ProfCheckBox)
         //create die
         dice = DiceRoll(1)
 
@@ -71,8 +76,41 @@ class DiceActivity : AppCompatActivity(), SensorEventListener {
 
             override fun onFinish() {
                 timer?.cancel()
+                val rollTot: Int = dice.number + getProfBonus() + getSkillValue()
+                diceTotal.text = "Your Roll Total is: $rollTot"
             }
         }.start()
+    }
+
+    private fun getSkillValue(): Int {
+        return ((skillValue - 10) / 2)
+    }
+
+    fun getProfBonus(): Int {
+        if (isProfBox.isActivated) {
+            if (charLevel < 5) {
+                return 2
+            }
+            else if (charLevel < 9)
+            {
+                return 3
+            }
+            else if (charLevel < 13)
+            {
+                return 4
+            }
+            else if (charLevel < 17)
+            {
+                return 5
+            }
+            else
+            {
+                return 6
+            }
+        }
+        else {
+            return 0
+        }
     }
 
     fun onClick(view: View) {
