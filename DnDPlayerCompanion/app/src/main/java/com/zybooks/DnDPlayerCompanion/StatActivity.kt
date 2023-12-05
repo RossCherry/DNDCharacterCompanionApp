@@ -75,8 +75,13 @@ class StatActivity : AppCompatActivity() {
 
 
         // Add click callbacks
-//        answerButton.setOnClickListener { toggleAnswerVisibility() }
-//        findViewById<Button>(R.id.add_question_button).setOnClickListener { addQuestion() }
+        strButton.setOnClickListener { rollDice(statsList.strength.toInt())}
+        dexButton.setOnClickListener { rollDice(statsList.dexterity.toInt())}
+        conButton.setOnClickListener { rollDice(statsList.constitution.toInt())}
+        intButton.setOnClickListener { rollDice(statsList.intelligence.toInt())}
+        wisButton.setOnClickListener { rollDice(statsList.wisdom.toInt())}
+        chaButton.setOnClickListener { rollDice(statsList.charisma.toInt())}
+        
 
         // SubjectActivity should provide the subject ID and text
         val characterId = intent.getLongExtra(EXTRA_CHARACTER_ID, 0)
