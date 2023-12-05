@@ -24,7 +24,7 @@ class CharacterDialogFragment: DialogFragment() {
             .setTitle(R.string.character)
             .setView(characterEditText)
             .setPositiveButton(R.string.create) { dialog, whichButton ->
-                // Notify listener
+
                 val character = characterEditText.text.toString()
                 listener.onSubjectEntered(character.trim())
             }

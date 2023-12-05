@@ -96,11 +96,11 @@ class CharacterActivity : AppCompatActivity(),
             this.character = character
             characterTextView.text = character.text
             if (selectedCharacterPosition == position) {
-                // Make selected subject stand out
+                // change color of selected character
                 characterTextView.setBackgroundColor(Color.RED)
             }
             else {
-                // Make the background color dependent on the length of the subject string
+                // change background color based on name length
                 val colorIndex = character.text.length % characterColors.size
                 characterTextView.setBackgroundColor(characterColors[colorIndex])
             }
@@ -116,12 +116,12 @@ class CharacterActivity : AppCompatActivity(),
             // Re-bind the selected item
             subjectAdapter.notifyItemChanged(selectedCharacterPosition)
 
-            // Show the CAB
+            // CAB
             actionMode = this@CharacterActivity.startActionMode(actionModeCallback)
             return true
         }
         override fun onClick(view: View) {
-            // Start QuestionActivity with the selected subject
+            // Open stats
             val intent = Intent(this@CharacterActivity, StatActivity::class.java)
             intent.putExtra(StatActivity.EXTRA_CHARACTER_ID, character!!.id)
             intent.putExtra(StatActivity.EXTRA_CHARACTER_TEXT, character!!.text)
@@ -132,7 +132,7 @@ class CharacterActivity : AppCompatActivity(),
     private val actionModeCallback = object : ActionMode.Callback {
 
         override fun onCreateActionMode(mode: ActionMode, menu: Menu): Boolean {
-            // Provide context menu for CAB
+            // CAB context
             val inflater = mode.menuInflater
             inflater.inflate(R.menu.context_menu, menu)
             return true
@@ -144,16 +144,15 @@ class CharacterActivity : AppCompatActivity(),
 
         override fun onActionItemClicked(mode: ActionMode, item: MenuItem): Boolean {
             if (item.itemId == R.id.delete) {
-                // Stop updateUI() from being called
                 loadCharacterList = false
 
-                // Delete from ViewModel
+                // Delete form VM
                 characterListViewModel.deleteSubject(selectedCharacter)
 
-                // Remove from RecyclerView
+                // delete from RM
                 subjectAdapter.removeCharacter(selectedCharacter)
 
-                // Close the CAB
+                // Close CAB
                 mode.finish()
                 return true
             }
@@ -164,7 +163,7 @@ class CharacterActivity : AppCompatActivity(),
         override fun onDestroyActionMode(mode: ActionMode) {
             actionMode = null
 
-            // CAB closing, need to deselect item if not deleted
+            // deselect when cab closed
             subjectAdapter.notifyItemChanged(selectedCharacterPosition)
             selectedCharacterPosition = RecyclerView.NO_POSITION
         }
@@ -186,25 +185,25 @@ class CharacterActivity : AppCompatActivity(),
         }
         fun addCharacter(character: Character) {
 
-            // Add the new subject at the beginning of the list
+            // new character goes to top of the list
             characterList.add(0, character)
 
-            // Notify the adapter that item was added to the beginning of the list
+            // notify that the character is added
             notifyItemInserted(0)
 
-            // Scroll to the top
+            // move to top
             characterRecyclerView.scrollToPosition(0)
         }
         fun removeCharacter(character: Character) {
 
-            // Find subject in the list
+            // locate character
             val index = characterList.indexOf(character)
             if (index >= 0) {
 
-                // Remove the subject
+                // delete character
                 characterList.removeAt(index)
 
-                // Notify adapter of subject removal
+                // notify of delete
                 notifyItemRemoved(index)
             }
         }

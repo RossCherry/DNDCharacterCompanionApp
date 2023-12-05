@@ -52,19 +52,18 @@ class StatEditActivity : AppCompatActivity() {
 
         findViewById<FloatingActionButton>(R.id.save_button).setOnClickListener { saveButtonClick() }
 
-        // Get question ID from QuestionActivity
+        // Get the id for the stat tied to a character
         statId = intent.getLongExtra(EXTRA_STAT_ID, -1L)
 
         if (statId == -1L) {
-            // Add new question
+            // Create new stat block for a new character
             stats = Stats()
             stats.characterId = intent.getLongExtra(StatActivity.EXTRA_CHARACTER_ID, 0)
             stats.name = intent.getStringExtra(StatActivity.EXTRA_CHARACTER_TEXT)!!
             nameEditText.setText(stats.name)
             setTitle(R.string.add_stat)
         } else {
-            // TODO: Display existing question from ViewModel
-            // Display existing question from ViewModel
+            // If stats exist display them
             statDetailViewModel.loadStat(statId)
             statDetailViewModel.statsLiveData.observe(this,
                 { stat ->
@@ -107,14 +106,13 @@ class StatEditActivity : AppCompatActivity() {
         stats.wisdom = wisEditText.text.toString()
         stats.charisma = chaEditText.text.toString()
 
-        // TODO: Save new or existing question
         if (statId == -1L) {
             statDetailViewModel.addStat(stats)
         } else {
             statDetailViewModel.updateStat(stats)
         }
 
-        // Send back OK result
+        // Return ok
         setResult(RESULT_OK)
         finish()
     }

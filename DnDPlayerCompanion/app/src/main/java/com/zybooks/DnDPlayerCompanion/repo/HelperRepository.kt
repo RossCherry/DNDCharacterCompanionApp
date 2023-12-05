@@ -31,7 +31,6 @@ class HelperRepository private constructor(context: Context) {
     private val statDao = database.statDao()
 
 
-    fun getCharacter(subjectId: Long): LiveData<Character?> = characterDao.getCharacter(subjectId)
 
     fun getCharacters(): LiveData<List<Character>> = characterDao.getCharacters()
 

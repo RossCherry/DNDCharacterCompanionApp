@@ -36,16 +36,12 @@ class StatActivity : AppCompatActivity() {
     private lateinit var wisButton: Button
     private lateinit var chaButton: Button
 
-    val EXTRA_CHARACTER_SKILL = 0;
-    val EXTRA_CHARCTER_LEVEL = 0;
-    private lateinit var deletedStats: Stats
     private var currentQuestionIndex = 0
     private val addStatResultLauncher = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()) { result ->
         if (result.resultCode == Activity.RESULT_OK) {
 
-            // Display the added question, which will appear at end of list
-            //currentQuestionIndex = statsList
+            // toast when stats are upadated
 
             Toast.makeText(this, R.string.stat_updated, Toast.LENGTH_SHORT).show()
         }
@@ -74,23 +70,22 @@ class StatActivity : AppCompatActivity() {
         chaButton = findViewById(R.id.charismaButton)
 
 
-        // Add click callbacks
+        // Button Callbacks
         strButton.setOnClickListener { rollDice(statsList.strength.toInt())}
         dexButton.setOnClickListener { rollDice(statsList.dexterity.toInt())}
         conButton.setOnClickListener { rollDice(statsList.constitution.toInt())}
         intButton.setOnClickListener { rollDice(statsList.intelligence.toInt())}
         wisButton.setOnClickListener { rollDice(statsList.wisdom.toInt())}
         chaButton.setOnClickListener { rollDice(statsList.charisma.toInt())}
-        
 
-        // SubjectActivity should provide the subject ID and text
+
+        // Getting the Id from Character
         val characterId = intent.getLongExtra(EXTRA_CHARACTER_ID, 0)
         val characterText = intent.getStringExtra(EXTRA_CHARACTER_TEXT)
         character = Character(characterId, characterText!!)
 
-        // Get all questions for this subject
+        // Get Stats for the character
         statsList = Stats()
-        //statsList.characterId = characterId
         statListViewModel.loadStats(characterId)
         statListViewModel.statsListLiveData.observe(
             this, { statsList ->
@@ -108,7 +103,6 @@ class StatActivity : AppCompatActivity() {
     }
 
     private fun updateUI() {
-        //showQuestion(currentQuestionIndex)
             nameTextView.setText(statsList.name)
             classTextView.setText(statsList.DNDClass)
             raceTextView.setText(statsList.race)
@@ -129,55 +123,20 @@ class StatActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
 
-        //  Determine which app bar item was chosen
         return when (item.itemId) {
-/*            R.id.previous -> {
-                showQuestion(currentQuestionIndex - 1)
-                true
-            }
-            R.id.next -> {
-                showQuestion(currentQuestionIndex + 1)
-                true
-            }
-            R.id.add -> {
-                addQuestion()
-                true
-            }*/
             R.id.edit -> {
                 editStat()
                 true
             }
-/*            R.id.delete -> {
-                deleteQuestion()
-                true
-            }*/
             else -> super.onOptionsItemSelected(item)
         }
     }
-
-/*    private fun displayQuestion(display: Boolean) {
-        if (display) {
-            showQuestionLayout.visibility = View.VISIBLE
-            noQuestionLayout.visibility = View.GONE
-        } else {
-            showQuestionLayout.visibility = View.GONE
-            noQuestionLayout.visibility = View.VISIBLE
-        }
-    }*/
-
-/*    private fun updateAppBarTitle() {
-
-        // Display subject and number of questions in app bar
-        val title = resources.getString(R.string.question_number, character.text,
-            currentQuestionIndex + 1, statsList.size)
-        setTitle(title)
-    }*/
 
     private fun rollDice(att: Int)
     {
         val intent = Intent(this, DiceActivity::class.java)
             intent.putExtra("EXTRA_CHARACTER_SKILL", att)
-            intent.putExtra("EXTRA_CHARCTER_LEVEL", statsList.level)
+            intent.putExtra("EXTRA_CHARACTER_LEVEL", statsList.level.toInt())
     }
     private fun addStat() {
         val intent = Intent(this, StatEditActivity::class.java)
@@ -199,60 +158,4 @@ class StatActivity : AppCompatActivity() {
         }
     }
 
-    private fun deleteQuestion() {
-        if (currentQuestionIndex >= 0) {
-            val stat = statsList
-            statListViewModel.deleteStat(stat)
-
-            // Save question in case user wants to undo delete
-            deletedStats = stat
-
-            // Show delete message with Undo button
-            /*val snackbar = Snackbar.make(
-                findViewById(R.id.coordinator_layout),
-                R.string.stat_deleted, Snackbar.LENGTH_LONG
-            )*/
-            /*snackbar.setAction(R.string.undo) {
-                // Add question back
-                statListViewModel.addQuestion(deletedStats)
-            }
-            snackbar.show()*/
-        }
-    }
-
-   /* private fun showQuestion(questionIndex: Int) {
-
-        // Show question at the given index
-        if (statsList.isNotEmpty()) {
-            var newQuestionIndex = questionIndex
-
-            if (questionIndex < 0) {
-                newQuestionIndex = statsList.size - 1
-            } else if (questionIndex >= statsList.size) {
-                newQuestionIndex = 0
-            }
-
-            currentQuestionIndex = newQuestionIndex
-            updateAppBarTitle()
-
-            val stat = statsList[currentQuestionIndex]
-            questionTextView.text = stat.name
-            answerTextView.text = stat.DNDClass
-        } else {
-            // No questions yet
-            currentQuestionIndex = -1
-        }
-    }*/
-
-    /*private fun toggleAnswerVisibility() {
-        if (answerTextView.visibility == View.VISIBLE) {
-            answerButton.setText(R.string.show_answer)
-            answerTextView.visibility = View.INVISIBLE
-            answerLabelTextView.visibility = View.INVISIBLE
-        } else {
-            answerButton.setText(R.string.hide_answer)
-            answerTextView.visibility = View.VISIBLE
-            answerLabelTextView.visibility = View.VISIBLE
-        }
-    }*/
 }
