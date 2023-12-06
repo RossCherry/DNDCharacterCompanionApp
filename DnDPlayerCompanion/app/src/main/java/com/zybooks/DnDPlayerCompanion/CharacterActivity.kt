@@ -1,5 +1,6 @@
 package com.zybooks.DnDPlayerCompanion
 
+import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -18,6 +19,8 @@ import android.view.ActionMode
 import android.view.Menu
 import android.view.MenuItem
 import android.graphics.Color
+
+
 
 class CharacterActivity : AppCompatActivity(),
     CharacterDialogFragment.OnSubjectEnteredListener {
@@ -53,6 +56,30 @@ class CharacterActivity : AppCompatActivity(),
         characterRecyclerView.layoutManager = GridLayoutManager(applicationContext, 2)
 
 
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.main_menu, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+
+        return when (item.itemId) {
+            R.id.about -> {
+                val builder: AlertDialog.Builder = AlertDialog.Builder(this)
+                builder
+                    .setMessage("This app allows the user to create and save a DND 5e character, " +
+                            "and roll a D20 based on their character's stats. \n \n Created by: "
+                    + "Ross Cherry and Jack Johnson")
+                    .setTitle("About")
+
+                val dialog: AlertDialog = builder.create()
+                dialog.show()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 
 

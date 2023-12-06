@@ -37,4 +37,5 @@
     <string name="is_skill_proficient">Is Skill Proficient?</string>
     <string name="please_roll_dice">Please Roll Dice</string>
     <string name="roll">Roll</string>
+    <string name="about">About</string>
 </resources>
