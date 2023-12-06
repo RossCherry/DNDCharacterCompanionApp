@@ -22,6 +22,11 @@
             android:launchMode="singleTop"
             android:parentActivityName=".CharacterActivity" />
         <activity
+            android:name=".DiceActivity"
+            android:parentActivityName=".StatActivity"
+            android:exported="false"
+            />
+        <activity
             android:name=".CharacterActivity"
             android:exported="true">
             <intent-filter>

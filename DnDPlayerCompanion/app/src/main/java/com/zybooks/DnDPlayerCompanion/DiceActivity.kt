@@ -36,7 +36,6 @@ class DiceActivity : AppCompatActivity(), SensorEventListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dice_roll)
-
         //get intents
         skillValue = intent.getIntExtra("EXTRA_CHARACTER_SKILL", 0)
         charLevel = intent.getIntExtra("EXTRA_CHARACTER_LEVEL", 0)
@@ -87,7 +86,7 @@ class DiceActivity : AppCompatActivity(), SensorEventListener {
     }
 
     fun getProfBonus(): Int {
-        if (isProfBox.isActivated) {
+        if (isProfBox.isChecked) {
             if (charLevel < 5) {
                 return 2
             }

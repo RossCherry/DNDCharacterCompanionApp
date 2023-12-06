@@ -135,8 +135,9 @@ class StatActivity : AppCompatActivity() {
     private fun rollDice(att: Int)
     {
         val intent = Intent(this, DiceActivity::class.java)
-            intent.putExtra("EXTRA_CHARACTER_SKILL", att)
-            intent.putExtra("EXTRA_CHARACTER_LEVEL", statsList.level.toInt())
+        intent.putExtra("EXTRA_CHARACTER_SKILL", att)
+        intent.putExtra("EXTRA_CHARACTER_LEVEL", statsList.level.toInt())
+        startActivity(intent)
     }
     private fun addStat() {
         val intent = Intent(this, StatEditActivity::class.java)
